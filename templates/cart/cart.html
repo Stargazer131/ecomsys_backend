@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}Ecomsys cart{% endblock %} 
+
+{% block content %}
+  <h1>Your Shopping Cart</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <form method="POST" action="{% url 'show_cart' %}">
+        {% csrf_token %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.type }}</td>
+          <td>
+            <input type="number" name="quantity" value="{{ item.quantity }}" min="0">
+            <input type="hidden" name="cart_item_id" value="{{ item.id }}">
+          </td>
+          <td>
+            <button type="submit" name="action" value="update">Update</button>
+          </td>
+          <td>
+            <button type="submit" name="action" value="delete">Delete</button>
+          </td>
+        </tr>
+      </form>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'styles/cart/cart.css' %}" />
+{% endblock %}

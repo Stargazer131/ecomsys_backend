@@ -1,0 +1,83 @@
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.search_bar {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  /* Add styles for the select element */
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[readonly] {
+  background-color: #eee;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 8px; /* Add a margin between buttons */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* table part */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.product-image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#imagePreview {
+  max-width: 400px; /* Set your desired maximum width */
+  max-height: 300px; /* Set your desired maximum height */
+  margin-bottom: 20px;
+}
