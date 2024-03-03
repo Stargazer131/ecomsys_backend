@@ -1,4 +1,4 @@
-python manage.py runserver
+python manage.py runserver 8001
 
 python manage.py makemigrations
 

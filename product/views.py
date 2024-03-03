@@ -34,17 +34,4 @@ class BookDetailAPIView(generics.RetrieveAPIView):
 class AllProductAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    
-      
-def home(request):
-    # Your data goes here
-    products = Product.objects.all()  # Replace with your actual queryset
 
-    # Pass data to the template
-    context = {
-        'products': products,
-        # Add more variables as needed
-    }
-
-    # Render the template with the provided data
-    return render(request, 'product/home.html', context)

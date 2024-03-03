@@ -8,7 +8,6 @@ urlpatterns = [
     path('api/genres/<slug:slug>/', views.GenreDetailAPIView.as_view(), name='genre_detail'),
     path('api/books/<slug:slug>/', views.BookDetailAPIView.as_view(), name='book_detail'),
     
-    path('api/product/all/', views.AllProductAPI.as_view(), name='api_product_all'),
-    path('', views.home, name='home'),
+    path('all/', views.AllProductAPI.as_view(), name='product_all'),
 ]
 
