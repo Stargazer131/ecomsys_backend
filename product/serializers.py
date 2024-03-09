@@ -1,24 +1,18 @@
 from rest_framework import serializers
-from product.models import Book, Genre, Product
+from product.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
     class Meta:
         fields = '__all__'
         model = Product
-
-
-class GenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = '__all__'
-        model = Genre
-
-
-class BookSerializer(serializers.ModelSerializer):
-    genres = GenreSerializer(many=True)  # Use the GenreSerializer here
-    
-    class Meta:
-        fields = '__all__'
-        model = Book
+        
+        
+    def get_image_url(self, product):
+        request = self.context.get('request')
+        image_url = product.image.url
+        return request.build_absolute_uri(image_url)
 
 

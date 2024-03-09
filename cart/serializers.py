@@ -9,13 +9,14 @@ class CartItemSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = '__all__'
 
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         product_id = representation['product_id']
 
         # Assuming ProductSerializer is defined as before
         product = Product.objects.get(id=product_id)
-        product_serializer = ProductSerializer(product)
+        product_serializer = ProductSerializer(product, context=self.context)
         representation['product'] = product_serializer.data
 
         return representation

@@ -1,1 +1,3 @@
 __pycache__/
+.vscode
+resources/image/product_images/*

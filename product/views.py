@@ -1,37 +1,10 @@
-from django.shortcuts import render
 from rest_framework import generics
-from product.models import Book, Genre, Product
-from product.serializers import BookSerializer, GenreSerializer, ProductSerializer
+from product.models import Product
+from product.serializers import ProductSerializer
 from django.db.models import Q
 # Create your views here.
 
 
-class BookListAPIView(generics.ListAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    
-
-class GenreListAPIView(generics.ListAPIView):
-    queryset = Genre.objects.all()
-    serializer_class = GenreSerializer
-    
-    
-class GenreDetailAPIView(generics.RetrieveAPIView):
-    queryset = Genre.objects.all()
-    serializer_class = GenreSerializer
-    lookup_field = 'slug'
-    
-    # def get_queryset(self):
-    #     return Genre.objects.filter(Q(slug=self.kwargs['slug']))
-
-
-class BookDetailAPIView(generics.RetrieveAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    lookup_field = 'slug'
-    
-    
-class AllProductAPI(generics.ListAPIView):
+class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-

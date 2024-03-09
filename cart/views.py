@@ -16,32 +16,31 @@ class CartListAPIView(APIView):
 
         else: 
             cart_items = CartItem.objects.filter(cart_id=cart_id)            
-            serializer = CartItemSerializer(cart_items, many=True)
+            serializer = CartItemSerializer(cart_items, many=True, context={"request": request})
             response_data = {
                 'cart_items': serializer.data
             }
-            
 
         return Response(response_data, status=status.HTTP_200_OK)
     
     
     def post(self, request, *args, **kwargs):
-        action = request.data.get('action')
-        cart_id = request.data.get(cart.CART_ID_SESSION_KEY)
+        action = request.POST.get('action')
+        cart_id = request.POST.get(cart.CART_ID_SESSION_KEY)
         
         if action == 'add':
-            product_id = request.data.get('product_id')
+            product_id = int(request.POST.get('product_id'))
             cart.add_to_cart(product_id, cart_id)
         elif action == 'update':
-            cart_item_id = request.data.get('cart_item_id')
-            quantity = request.data.get('quantity')            
+            cart_item_id = int(request.POST.get('cart_item_id'))
+            quantity = int(request.POST.get('quantity'))            
             cart.update_cart(cart_item_id, quantity)
         else:
-            cart_item_id = request.data.get('cart_item_id')
+            cart_item_id = int(request.POST.get('cart_item_id'))
             cart.remove_from_cart(cart_item_id)
         
         cart_items = CartItem.objects.filter(cart_id=cart_id)            
-        serializer = CartItemSerializer(cart_items, many=True)
+        serializer = CartItemSerializer(cart_items, many=True, context={"request": request})
         response_data = {
             'cart_items': serializer.data
         } 
