@@ -6,4 +6,4 @@ class CartItemAdmin(admin.ModelAdmin):
     list_per_page = 20
     ordering = ['-date_added']
 
-admin.site.register(CartItem, CartItemAdmin, using='cart_db')
+admin.site.register(CartItem, CartItemAdmin, using='user_db')

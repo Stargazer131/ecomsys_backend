@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mobile',
     'search',
     'cart',
+    'user',
     'rest_framework',
 ]
 
@@ -84,25 +85,25 @@ WSGI_APPLICATION = 'ecomsys.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'ecomsys_product',
+        'NAME': 'ecomsys_user',
         'USER': 'root',
         'PASSWORD': 'hayasaka131',
         'HOST': 'localhost',
         'PORT': '3306'
     },
     'product_db': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'djongo', 
         'NAME': 'ecomsys_product',
+        'HOST': 'localhost',
+        'PORT': '27017'
+    },
+    'user_db': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'ecomsys_user',
         'USER': 'root',
         'PASSWORD': 'hayasaka131',
         'HOST': 'localhost',
         'PORT': '3306'
-    },
-    'cart_db': {
-        'ENGINE': 'djongo', 
-        'NAME': 'ecomsys_cart',
-        'HOST': 'localhost',
-        'PORT': '27017'
     },
 }
 

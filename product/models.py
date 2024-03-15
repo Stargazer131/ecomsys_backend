@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
+from product.utility import random_id
 
 
 # Create your models here.
 class Product(models.Model):
+    id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     slug = models.SlugField(
         max_length=50, unique=True, 
@@ -30,5 +32,11 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse('catalog_product', kwargs={'product_slug': self.slug})
+    
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = random_id(Product)
+        super().save(*args, **kwargs)
 
     

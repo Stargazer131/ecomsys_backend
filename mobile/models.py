@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
+from product.utility import random_id
 
 
 # Create your models here.
 class MobileType(models.Model):
+    id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField()
     slug = models.SlugField(
@@ -23,6 +25,12 @@ class MobileType(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = random_id(MobileType)
+        super().save(*args, **kwargs)
 
 
 class Mobile(models.Model):

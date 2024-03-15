@@ -4,6 +4,7 @@ from product.models import Product
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
+    exclude = ('id', )
     list_display = ('name',)
     list_display_links = ('name',)
     list_per_page = 20

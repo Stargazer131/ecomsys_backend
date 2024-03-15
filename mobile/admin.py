@@ -16,6 +16,7 @@ admin.site.register(Mobile, MobileAdmin, using='product_db')
 
 
 class MobileTypeAdmin(admin.ModelAdmin):
+    exclude = ('id', )
     list_display = ('name',)
     list_display_links = ('name',)
     list_per_page = 20

@@ -16,6 +16,7 @@ admin.site.register(ClothingItem, ClothingItemAdmin, using='product_db')
 
 
 class StyleAdmin(admin.ModelAdmin):
+    exclude = ('id', )
     list_display = ('name',)
     list_display_links = ('name',)
     list_per_page = 20
@@ -27,6 +28,7 @@ admin.site.register(Style, StyleAdmin, using='product_db')
 
 
 class ManufacturerAdmin(admin.ModelAdmin):
+    exclude = ('id', )
     list_display = ('name',)
     list_display_links = ('name',)
     list_per_page = 20
