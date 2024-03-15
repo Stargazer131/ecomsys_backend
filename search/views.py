@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from product.models import Product
 from product.serializers import ProductSerializer
-from search.image_predictor import predict_similar_image
+from search.image_recommender import predict_similar_image
 
 
 class SearchByNameAPIView(APIView):
