@@ -108,6 +108,7 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = ['search.router.CheckerRouter',]  # it consists the path where your router.py file reside.
+USER_ID_KEY = 'user_id'
 
 
 # Password validation

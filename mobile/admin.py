@@ -1,7 +1,9 @@
 from django.contrib import admin
 from mobile.models import Mobile, MobileType
 
+
 # Register your models here.
+@admin.register(Mobile)
 class MobileAdmin(admin.ModelAdmin):
     list_display = ('product_name',)  # Use the actual field name from Product
     list_display_links = ('product_name',)
@@ -12,9 +14,8 @@ class MobileAdmin(admin.ModelAdmin):
     def product_name(self, obj):
         return obj.product.name
 
-admin.site.register(Mobile, MobileAdmin, using='product_db')
 
-
+@admin.register(MobileType)
 class MobileTypeAdmin(admin.ModelAdmin):
     exclude = ('id', )
     list_display = ('name',)
@@ -23,5 +24,3 @@ class MobileTypeAdmin(admin.ModelAdmin):
     ordering = ['name']
     search_fields = ['name', 'description',]
     prepopulated_fields = {'slug': ('name',)}
-
-admin.site.register(MobileType, MobileTypeAdmin, using='product_db')

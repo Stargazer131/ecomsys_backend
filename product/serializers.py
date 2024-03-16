@@ -3,8 +3,6 @@ from product.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    image_url = serializers.SerializerMethodField()
-
     class Meta:
         fields = '__all__'
         model = Product

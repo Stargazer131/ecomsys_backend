@@ -1,6 +1,6 @@
 python manage.py runserver 8001
 
-python manage.py makemigrations
+python manage.py makemigrationscart.get_cart_items(user_id)
 
 python manage.py migrate
 

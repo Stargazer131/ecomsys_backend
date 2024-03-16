@@ -1,6 +1,6 @@
+import random
 from django.db import models
 from django.urls import reverse
-from product.utility import random_id
 
 
 # Create your models here.
@@ -39,4 +39,11 @@ class Product(models.Model):
             self.id = random_id(Product)
         super().save(*args, **kwargs)
 
-    
+
+def random_id(module):
+    id_list = module.objects.values_list('id', flat=True)
+    while True:
+        id = random.randint(1, 1_000_000_000)
+        if id not in id_list:
+            break
+    return id

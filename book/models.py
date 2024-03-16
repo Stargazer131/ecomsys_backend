@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from product.utility import random_id
+from product.models import random_id
 
 
 # Create your models here.

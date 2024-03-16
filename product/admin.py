@@ -3,6 +3,7 @@ from product.models import Product
 
 
 # Register your models here.
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     exclude = ('id', )
     list_display = ('name',)
@@ -11,5 +12,3 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ['name']
     search_fields = ['name', 'description', 'type']
     prepopulated_fields = {'slug': ('type', 'name')}
-
-admin.site.register(Product, ProductAdmin, using='product_db')

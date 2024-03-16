@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class CartItem(models.Model):
-    cart_id = models.CharField(max_length=50)
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='cart_items')
     date_added = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=1)
     product_id = models.IntegerField()

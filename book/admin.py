@@ -4,7 +4,7 @@ from book.models import Book, Genre, Author, Publisher, BookGenre
 
 class BookGenreInline(admin.TabularInline):
     model = BookGenre
-    exclude = ('id',)
+    # exclude = ('id',)
 
 
 @admin.register(Book)
@@ -21,6 +21,7 @@ class BookAdmin(admin.ModelAdmin):
     inlines = [BookGenreInline]  # Add inline for BookGenre
 
 
+@admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     exclude = ('id', )
     list_display = ('name',)
@@ -30,9 +31,8 @@ class GenreAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description',]
     prepopulated_fields = {'slug': ('name',)}
 
-admin.site.register(Genre, GenreAdmin, using='product_db')
 
-
+@admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     exclude = ('id', )
     list_display = ('name',)
@@ -42,9 +42,8 @@ class AuthorAdmin(admin.ModelAdmin):
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
 
-admin.site.register(Author, AuthorAdmin, using='product_db')
 
-
+@admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
     exclude = ('id', )
     list_display = ('name',)
@@ -53,5 +52,3 @@ class PublisherAdmin(admin.ModelAdmin):
     ordering = ['name']
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
-
-admin.site.register(Publisher, PublisherAdmin, using='product_db')

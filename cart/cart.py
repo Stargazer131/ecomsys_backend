@@ -1,28 +1,17 @@
 from cart.models import CartItem
-import random
-
-
-CART_ID_SESSION_KEY = 'cart_id'
-
-
-# Generate a random cart id
-def generate_cart_id():
-    cart_id = ''
-    characters = '!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~'
-    cart_id_length = 50
-    for _ in range(cart_id_length):
-        cart_id += characters[random.randint(0, len(characters)-1)]
-    return cart_id
+from user.models import User
 
 
 # Return all items from the current user's cart
-def get_cart_items(cart_id):
-    return CartItem.objects.filter(cart_id=cart_id)
+def get_cart_items(user_id):
+    user = User.objects.get(id=user_id)
+    cart_items = user.cart_items.all() 
+    return cart_items
 
 
 # Add an item to the cart
-def add_to_cart(product_id, cart_id):
-    cart_products = get_cart_items(cart_id)
+def add_to_cart(product_id, user_id):
+    cart_products = get_cart_items(user_id)
     product_in_cart = False
 
     for cart_item in cart_products:
@@ -32,9 +21,8 @@ def add_to_cart(product_id, cart_id):
 
     if not product_in_cart:
         ci = CartItem()
-        ci.id = random_id()
         ci.quantity = 1
-        ci.cart_id = cart_id
+        ci.user = User.objects.get(id=user_id)
         ci.product_id = product_id
         ci.save()
 
@@ -64,12 +52,4 @@ def remove_from_cart(cart_item_id):
     if cart_item:
         cart_item.delete()
 
-
-def random_id():
-    id_list = CartItem.objects.values_list('id', flat=True)
-    while True:
-        id = random.randint(1, 1_000_000_000)
-        if id not in id_list:
-            break
-    return id
         
