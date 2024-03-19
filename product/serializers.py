@@ -12,5 +12,3 @@ class ProductSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         image_url = product.image.url
         return request.build_absolute_uri(image_url)
-
-
