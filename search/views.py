@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from product.models import Product
 from product.serializers import ProductSerializer
-from search.image_recommender import predict_similar_image
+# from search.image_recommender import predict_similar_image
 
 
 class SearchByNameAPIView(APIView):
@@ -18,9 +18,9 @@ class SearchByNameAPIView(APIView):
         elif search_type == 'voice':
             products = Product.objects.filter(name__icontains=voice_search)
         else:
-            similar_product_ids = predict_similar_image(image_search)
-            products = Product.objects.filter(id__in=similar_product_ids)
-            # products = Product.objects.all()
+            # similar_product_ids = predict_similar_image(image_search)
+            # products = Product.objects.filter(id__in=similar_product_ids)
+            products = Product.objects.all()
 
         serializer = ProductSerializer(products, many=True, context={"request": request})
 

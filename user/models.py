@@ -10,6 +10,7 @@ class User(models.Model):
     )
     birthday = models.DateField()
     email = models.EmailField(max_length=50)
+    phone_number = models.CharField(max_length=10, default='0123456789')
     is_active = models.BooleanField(default=True)
 
 
