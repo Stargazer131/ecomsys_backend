@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.db import models
 
 
@@ -48,10 +48,11 @@ class Shipment(models.Model):
         
         
     def save(self, *args, **kwargs):
-        if not self.pk:  # Only calculate estimated delivery date if the instance is being created
+        if self.created_timestamp is None:  # Only calculate estimated delivery date if the instance is being created
             shipping_method_details = self.shipping_methods.get(self.shipping_method)
             if shipping_method_details:
                 estimate_shipping_day = shipping_method_details.get('estimate_shipping_day', 21)
-                self.estimated_delivery_date = self.created_timestamp.date() + timedelta(days=estimate_shipping_day)
+                self.estimated_delivery_date = (datetime.now() + timedelta(days=estimate_shipping_day)).date()
+                print(self.estimated_delivery_date)
                 self.fee = shipping_method_details.get('fee', 1.99)
         super().save(*args, **kwargs)

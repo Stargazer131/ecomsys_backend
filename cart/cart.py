@@ -5,7 +5,7 @@ from user.models import User
 # Return all items from the current user's cart
 def get_cart_items(user_id):
     user = User.objects.get(id=user_id)
-    cart_items = user.cart_items.all() 
+    cart_items = user.cart_items.filter(order__isnull=True)
     return cart_items
 
 

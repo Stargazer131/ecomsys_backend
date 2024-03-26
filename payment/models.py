@@ -9,6 +9,8 @@ class Payment(models.Model):
         ("Mastercard", "Mastercard"),
         ("Cash on Delivery", "Cash on Delivery"),
     ]
+    
+    payment_choice_list = [pair[0] for pair in payment_choices]
 
     status_choices = [
         ("Pending", "Pending"),
